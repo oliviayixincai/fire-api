@@ -6,8 +6,9 @@ function performFIRECalculation(age, annualIncome, annualExpenses, currentNetWor
 
   let yearsToFI = 0;
   let yearlyData = [];
+  let chartYear = 2024;
 
-  while (currentNetWorth < requiredSavings && yearsToFI < 40) { // Limiting to 40 years
+  while (currentNetWorth < requiredSavings ) { 
       const annualSavings = annualIncome - annualExpenses;
       currentNetWorth += annualSavings + (currentNetWorth * realRateOfReturn);
 
@@ -15,10 +16,10 @@ function performFIRECalculation(age, annualIncome, annualExpenses, currentNetWor
           age: parseInt(age) + yearsToFI,
           annualIncome: Math.round(annualIncome),
           annualSavings: Math.round(annualSavings),
-          netWorth: Math.round(currentNetWorth)
+          netWorth: Math.round(currentNetWorth),
+          chartYear: chartYear++
       });
-
-      annualExpenses *= (1 + inflationRate); // Adjust expenses for inflation
+      annualExpenses *= (1 + inflationRate); 
       yearsToFI++;
   }
 
@@ -27,7 +28,7 @@ function performFIRECalculation(age, annualIncome, annualExpenses, currentNetWor
       yearsToFI,
       ageAtFI,
       requiredSavings,
-      yearlyData // Including detailed yearly finances
+      yearlyData 
   };
 }
 
